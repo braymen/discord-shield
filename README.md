@@ -1,2 +1,2 @@
 # Discord Shield
-To be written
+Please standby
