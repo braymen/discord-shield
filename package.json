@@ -1,0 +1,28 @@
+{
+  "name": "shield",
+  "version": "1.0.0",
+  "description": "To be written",
+  "main": "index.js",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "stop-discord-phishing": "^0.2.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandonPessman/shield.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandonPessman/shield/issues"
+  },
+  "homepage": "https://github.com/BrandonPessman/shield#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
