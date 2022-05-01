@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/34040658/165449694-b844c5ed-01e7-44d1-983c-1c51dfbe297f.png" />
+  <img src="https://user-images.githubusercontent.com/34040658/166164449-6db248d5-d182-4869-a259-19fad611293b.png" />
   <h4> A Discord bot that identifies, logs, and mitigates malicious spammers and links from servers. </h4>
   
   
