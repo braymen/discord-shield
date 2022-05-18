@@ -1,2 +1,1 @@
-# Shield
-To be written
+No longer being maintained at the moment.
