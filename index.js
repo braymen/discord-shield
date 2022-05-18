@@ -13,7 +13,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-let logChannelID = ['968661183722815518']
+let logChannelID = ['976603504179290222']
 let users = []
 
 client.on('messageCreate', async message => {
