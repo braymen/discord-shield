@@ -1,7 +1,7 @@
 /* SERVER INVITE */
 // https://discord.com/api/oauth2/authorize?client_id=968648306689466458&permissions=1099511704580&scope=bot
 
-const SECONDS_FROM_FIRST_MESSAGE = 10
+const SECONDS_FROM_FIRST_MESSAGE = 30
 const MESSAGES_BEFORE_SUS = 3
 
 const { Client, Intents } = require('discord.js');
@@ -22,8 +22,10 @@ client.on('messageCreate', async message => {
     const { id, username } = message.author
     const channelId = message.channel.id
 
-    if (await checkIfExistingUser(id) && await checkIfNoExistingChannel(id, channelId)) {
-        await updateUser(id, channelId)
+    if (await checkIfExistingUser(id)) {
+        if (await checkIfNoExistingChannel(id, channelId)) {
+            await updateUser(id, channelId)
+        }
     } else {
         await addUser(id , username, channelId)
     }
@@ -50,7 +52,7 @@ const addUser = (id, username, channelId) => {
         channels: [channelId],
         firstMessageTime: new Date()
     })
-    console.log(users)
+    //console.log(users)
 }
 
 const updateUser = async (id, channelId) => {
@@ -60,12 +62,12 @@ const updateUser = async (id, channelId) => {
 }
 
 const checkIfExistingUser = async (id) => {
-    const user = users.find(element => element.id == id)
+    const user = users.find(element => element.id === id)
     return user ? true : false
 }
 
 const checkIfNoExistingChannel = async (id, channel) => {
-    const user = users.find(element => element.id == id)
+    const user = users.find(element => element.id === id)
     if (user) {
         const channelCheck = user.channels.includes(channel)
         return channelCheck ? false : true
@@ -74,7 +76,7 @@ const checkIfNoExistingChannel = async (id, channel) => {
 }
 
 const hasSusBehavior = async (id) => {
-    const user = users.find(element => element.id == id)
+    const user = users.find(element => element.id === id)
     if (user) {
         if (user.channelsMessaged >= MESSAGES_BEFORE_SUS) {
             return true
@@ -96,6 +98,6 @@ let CronJob = require('cron').CronJob;
 let job = new CronJob('* * * * * *', function() {
     let currentTime = new Date()
     users = users.filter((element) => currentTime - element.firstMessageTime < 1000 * SECONDS_FROM_FIRST_MESSAGE) // Keep anything less than 5 seconds old
-    console.log(users.length)
+    console.log(users)
 }, null, true, 'America/Los_Angeles');
 job.start();
