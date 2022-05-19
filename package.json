@@ -1,28 +1,40 @@
 {
-  "name": "shield",
+  "name": "discord-boilerplate-bot",
   "version": "1.0.0",
-  "description": "To be written",
-  "main": "index.js",
-  "dependencies": {
-    "cron": "^1.8.2",
-    "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0",
-    "stop-discord-phishing": "^0.2.0"
-  },
+  "description": "Discord.js v13 boilerplate code. Ready for slash commands. Includes event and command handlers with good file structure!",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "test": "nodemon .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrandonPessman/shield.git"
+    "url": "git+https://github.com/mezotv/discord-boilerplate-bot.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Discordjs",
+    "discord-bot",
+    "discord-js",
+    "discord",
+    "javascript"
+  ],
+  "author": "Mezo",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BrandonPessman/shield/issues"
+    "url": "https://github.com/mezotv/discord-boilerplate-bot/issues"
   },
-  "homepage": "https://github.com/BrandonPessman/shield#readme",
+  "homepage": "https://github.com/mezotv/discord-boilerplate-bot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.13.0",
+    "@discordjs/rest": "^0.4.1",
+    "chalk-advanced": "^1.0.3",
+    "cron": "^2.0.0",
+    "discord-api-types": "^0.32.0",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.0",
+    "stop-discord-phishing": "^0.2.0"
+  },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   }
 }
