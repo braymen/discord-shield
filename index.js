@@ -4,8 +4,8 @@
 const SECONDS_FROM_FIRST_MESSAGE = 30
 const MESSAGES_BEFORE_SUS = 3
 
-const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,] });
+const { Client, Intents, MessageActionRow, MessageButton } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 const stopPhishing = require('stop-discord-phishing')
 require('dotenv').config()
 
@@ -15,6 +15,40 @@ client.on('ready', () => {
 
 let logChannelID = ['976603504179290222']
 let users = []
+
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isButton()) return;
+	console.log(interaction);
+
+    let guild = await client.guilds.fetch(interaction.guildId)
+    let member = await guild.members.fetch(interaction.customId)
+    let result = await member.setNickname(null, 'Nickname reset due to it not following community guidelines')
+    let logChannel = await client.channels.fetch(logChannelID)
+    await logChannel.send('Name reset successsful for <@' + member.id + '>')
+    interaction.message.delete()
+});
+
+client.on('guildMemberUpdate', async (oldMember, newMember) => {
+    console.log("test")
+    if (oldMember.nickname !== newMember.nickname && newMember.nickname !== null) {
+        const row = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+                .setCustomId(newMember.id)
+                .setLabel('Reset Nickname')
+                .setStyle('DANGER'),
+        );
+
+        let logChannel = await client.channels.fetch(logChannelID)
+        await logChannel.send({
+            content: '**Changed Nickname** \n' + 
+                '[Account]: <@' + newMember.id + '>' + '\n' +
+                '[Old]: ' + oldMember.nickname + '\n' +
+                '[New]: ' + newMember.nickname,
+            components: [row]
+        })
+    }
+})
 
 client.on('messageCreate', async message => {
     if (message.author.bot) return 
