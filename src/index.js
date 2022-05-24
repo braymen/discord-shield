@@ -11,8 +11,9 @@ const client = new Client({
   ],
 });
 
-/* Basically loading the event and command loader ironic right */
+/* Basically loading the event loader ironic right */
 require("./util/eventLoader")(client);
+require("./util/cronJob")(client);
 
 /* It's creating a new collection for the commands. */
 client.commands = new Collection();

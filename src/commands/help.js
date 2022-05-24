@@ -3,21 +3,15 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("Returns the bot's ping status"),
+    .setName("help")
+    .setDescription("Basically the help command"),
 
-  async execute(interaction, client) {
+  async execute(interaction) {
     const pingembed = new MessageEmbed()
 
       .setColor("#5865f4")
-      .setTitle(":ping_pong:  Pong!")
-      .addFields(
-        {
-          name: "**Api** latency",
-          value: `> **${Math.round(client.ws.ping)}**ms`,
-          inline: false,
-        }
-      )
+      .setTitle("Your average Help command")
+      .setDescription("This is a help command. It's not very useful, but it's here if you need it.")
       .setTimestamp();
 
     await interaction.reply({
